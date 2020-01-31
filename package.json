@@ -12,11 +12,12 @@
   },
   "dependencies": {
     "@nuxtjs/vuetify": "0.5.5",
-    "nuxt": "^2.0.0",
+    "axios": "^0.19.2",
+    "nuxt": "^2.11.0",
     "vue-scrollto": "^2.15.0"
   },
   "devDependencies": {
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "nodemon": "^1.18.9",
     "sass-loader": "^7.1.0",
     "stylus": "^0.54.5",

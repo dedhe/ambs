@@ -6,7 +6,7 @@
         <div class="navigator">
           <v-btn outline color="red darken-4" small v-scroll-to="'#about'">About Us</v-btn>
           <v-btn outline color="red darken-4" small v-scroll-to="'#portofolio'">portofolio</v-btn>
-          <v-btn outline color="red darken-4" small v-scroll-to="'#galeri'">galeri</v-btn>
+          <v-btn outline color="red darken-4" small v-scroll-to="'#galeri'">Terbaru</v-btn>
           <v-btn outline color="red darken-4" small v-scroll-to="'#contact'">contact us</v-btn>
         </div>
       </div>
@@ -51,11 +51,15 @@
                 </b>
                 Apalah arti sebuah kenyamanan tanpa keamanan yang terjamin, bukan hanya keamanan di dalam perumahan, namun keamanan dari sisi legalitas lahan juga menjadi faktor utama di setiap project kami.
               </p>
-              <p> <b> 3. Kebanggaan. </b>  <br>
-              Design rumah yang dibangun dibuat minimalis modern, elegan dan mempunyai keunikan dari design bangunan dikelasnya. Dan selalu mengikuti perkembangan design, sehingga tak lekang oleh waktu.</p>
- 
-             <p><b>  4. Kenaikan nilai.</b> <br>
-              Kami selalu memilih lokasi yang sedang berkembang untuk setiap project nya, sehingga menjadikan nilai investasinya selalu naik. </p> 
+              <p>
+                <b>3. Kebanggaan.</b>
+                <br />Design rumah yang dibangun dibuat minimalis modern, elegan dan mempunyai keunikan dari design bangunan dikelasnya. Dan selalu mengikuti perkembangan design, sehingga tak lekang oleh waktu.
+              </p>
+
+              <p>
+                <b>4. Kenaikan nilai.</b>
+                <br />Kami selalu memilih lokasi yang sedang berkembang untuk setiap project nya, sehingga menjadikan nilai investasinya selalu naik.
+              </p>
             </div>
           </v-flex>
         </v-layout>
@@ -70,12 +74,12 @@
             </div>
           </v-flex>
 
-          <v-flex xs6 sm3 class="hh">
-            <div class="porto">
-              <img src="../assets/porto/1.png" alt="portofolio 1" class />
+          <v-flex xs6 sm3 class="hh" v-for="(dt, key) in portos" :key="key">
+            <div class="porto" @click="detailPorto(dt)">
+              <img :src="getUrl+dt.foto" alt="portofolio 1" class />
             </div>
           </v-flex>
-          <v-flex xs6 sm3 class="hh">
+          <!-- <v-flex xs6 sm3 class="hh">
             <div class="porto">
               <img src="../assets/porto/2.png" alt="portofolio 1" class />
             </div>
@@ -89,7 +93,7 @@
             <div class="porto">
               <img src="../assets/porto/4.png" alt="portofolio 1" class />
             </div>
-          </v-flex>
+          </v-flex>-->
         </v-layout>
       </v-container>
     </section>
@@ -122,11 +126,62 @@
         </v-layout>
       </v-container>
     </section>
+
+    <v-dialog v-model="dialog" persistent max-width="600px">
+      <v-card v-if="detail">
+        <v-card-title style="justify-content: center">
+          <h1 class="headline">{{detail.judul}}</h1>
+        </v-card-title>
+        <v-card-text>
+          <v-container grid-list-md>
+            <v-layout wrap>
+              <v-flex xs12>
+                <p>
+                 {{detail.isi}} </p>
+              </v-flex>
+            </v-layout>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" flat @click="dialog = !dialog">Close</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
 <script>
-export default {};
+import axios from "~/plugins/axios";
+export default {
+  data() {
+    return {
+      dialog: false,
+      getUrl: "http://localhost:2000/static/",
+      portos: [],
+      detail : null
+    };
+  },
+  created() {
+    this.initialize();
+  },
+
+  methods: {
+    initialize() {
+      axios
+        .get("/porto")
+        .then(res => {
+          this.portos = res.data;
+        })
+        .catch(err => console.log(err));
+    },
+    detailPorto(dt) {
+      console.log(dt);
+      this.detail = dt
+      this.dialog = true
+    }
+  }
+};
 </script>
 
 <style lang="scss">
