@@ -79,27 +79,12 @@
               <img :src="getUrl+dt.foto" alt="portofolio 1" class />
             </div>
           </v-flex>
-          <!-- <v-flex xs6 sm3 class="hh">
-            <div class="porto">
-              <img src="../assets/porto/2.png" alt="portofolio 1" class />
-            </div>
-          </v-flex>
-          <v-flex xs6 sm3 class="hh">
-            <div class="porto">
-              <img src="../assets/porto/3.png" alt="portofolio 1" class />
-            </div>
-          </v-flex>
-          <v-flex xs6 sm3 class="hh">
-            <div class="porto">
-              <img src="../assets/porto/4.png" alt="portofolio 1" class />
-            </div>
-          </v-flex>-->
         </v-layout>
       </v-container>
     </section>
     <section style="background:white; padding: 20px 0px 20px 0px;" id="galeri">
       <div class="cover">
-        <video src="../assets/video.mp4" autoplay loop muted class="myvideo"></video>
+        <video src="../assets/amb5.mp4" autoplay loop muted class="myvideo"></video>
       </div>
     </section>
     <section id="contact">
@@ -110,12 +95,6 @@
         marginheight="0"
         marginwidth="0"
       ></iframe>
-      <!-- <iframe
-        frameborder="0"
-        style="border:0"
-        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0Dx_boXQiwvdz8sJHoYeZNVTdoWONYkU&amp;q=place_id:ChIJn6wOs6lZwokRLKy1iqRcoKw"
-        allowfullscreen
-      ></iframe>-->
     </section>
     <section style="background:brown">
       <v-container style="background:brown">
